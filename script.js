@@ -12,7 +12,9 @@ const members = [
 // let names = []
 
 // for (const member of members) {
-//     names.push(member.name)
+//     const fullname = member.name
+//     const nameArr = fullname.split(' ')
+//     names.push(nameArr[0])
 // }
 
 // console.log(names);
@@ -37,7 +39,18 @@ const members = [
 
 // 4. Get average age
 // let size = 0;
-// let sum = 0;
+
+// let sum = members.reduce((acc, curr) => {
+//   if (curr.age !== undefined) {
+//     size++;
+//     return acc + curr.age;
+//   }
+//   return acc;
+// }, 0);
+
+// const ans=  sum / size;
+// console.log(ans);
+
 // for (let i = 0; i < members.length; i++) {
 //   if (members[i].age != undefined) {
 //     let memberAge = members[i].age;
@@ -50,12 +63,9 @@ const members = [
 // console.log(ans);
 
 // 5. Get Person with maximum age
-// let findMax = -Infinity;
-// for (const member of members) {
-//     if(member.age > findMax){
-//         findMax = member.age
-//     }
-// }
+// let findMax = Number.NEGATIVE_INFINITY;
+
+// const findMax = members.reduce((acc, curr) => curr.age ? curr.age : acc, 0)
 // console.log(findMax);
 
 // 6. Divide persons in three groups, result should look like
@@ -66,20 +76,21 @@ const members = [
 //     }
 //     Less than 35yrs is young, above 35 is old
 
-// let result = {
+// const result = members.reduce((acc, curr) => {
+//   if (curr.age && curr.age < 35) {
+//     acc.young.push(curr.name);
+//   } else if (curr.age !== undefined && curr.age > 35) {
+//     acc.old.push(curr.name);
+//   } else {
+//     acc.noage.push(curr.name);
+//   }
+//   return acc
+// },  {
 //   young: [],
 //   old: [],
 //   noage: [],
-// };
-// for (let i = 0; i < members.length; i++) {
-//   if (members[i].age < 35) {
-//     result.young.push(members[i].name);
-//   } else if (members[i].age > 35) {
-//     result.old.push(members[i].name);
-//   } else {
-//     result.noage.push(members[i].name);
-//   }
-// }
+// });
+
 // console.log(result);
 
 // 7. add a new member to same members array instance at index 2
@@ -101,14 +112,11 @@ const members = [
 // 9. Create a new array instance adding a new member at index 0,
 //    and keeping existing afterwards
 
-// let newMembers = []
-// newMembers.push({
-//     name: "Ramswaroop sharma",
-//     age: 50
-// })
-// for (const member of members) {
-//     newMembers.push(member)
-// }
+// const newMembers = members;
+// newMembers.unshift({
+//   name: "Ramswaroop sharma",
+//   age: 50,
+// });
 // console.log(newMembers);
 
 // 10. Extract properties of object using destructuring
@@ -137,25 +145,9 @@ const members = [
 // 13. Create a new object by copying using spread operator, override
 //     one of the properties to assign a new value in the same step
 
-// const {name: memberName, ...restProp} = members[2];
-// restProp.age = 50
-// console.log(restProp);
+// const newObj = {...members[2], age : 50}
+// console.log(newObj);
 
-// another example
-
-// let person = {
-//     name: "John",
-//     age: 30,
-//     city : "New York",
-//     country : "USA"
-// }
-
-// const {name, ...rest} = person
-// console.log(name);
-// console.log(rest);
-
-// rest.age = 40
-// console.log(rest);
 
 // 14. Use reduce function on array and object
 
