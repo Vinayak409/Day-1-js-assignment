@@ -18,49 +18,43 @@ const members = [
 // 2. Make everyone's last names in UPPERCASE in given array of objects
 
 // const updatedMembers = lodash.map(members, (member) => {
-//   let memberName = member.name;
-//   let nameArr = memberName.split(" ");
-//   let lastname = lodash.last(nameArr);
-//   let firstname = lodash.initial(nameArr).join(" ");
+//   const memberName = member.name;
+//   const nameArr = memberName.split(" ");
+//   const lastname = lodash.last(nameArr);
+//   const firstname = lodash.initial(nameArr).join(" ");
 
-//   let uppercaseLastname = lodash.toUpper(lastname);
+//   const uppercaseLastname = lodash.toUpper(lastname);
 
 //   return {
+//     ...member,
 //     name: firstname + " " + uppercaseLastname,
-//     age: member.age,
 //   };
 // });
 
 // console.log(updatedMembers);
 
 //   3. Get entries where age is between 41-60
-// let result = [];
-// lodash.forEach(members, (member) => {
-//   let memberAge = member.age;
-//   memberAge >= 41 && memberAge <= 60 ? result.push(memberAge) : null;
-// });
+// const result = lodash.filter(members, curr => curr.age >=41 && curr.age<=60);
 // console.log(result);
 
 // 4. Get average age
 // let size = 0;
-// let sum = 0;
 
-// lodash.map(members, (member) => {
-//   if (member.age != undefined) {
-//     sum += member.age;
+// let sum = lodash.reduce(members, (acc, curr) => {
+//   if (curr.age !== undefined) {
 //     size++;
+//     return acc + curr.age;
 //   }
-// });
+//   return acc;
+// }, 0);
 
-// let ans = sum / size;
+// const ans=  sum / size;
+
 // console.log(ans);
 
 // 5. Get Person with maximum age
-// let arr = []
-// lodash.map(members, (member) => {
-//     arr.push(member.age)
-// })
-// console.log(lodash.max(arr));
+// const findMax = lodash.reduce(members, (acc, curr) => curr.age ? curr.age : acc, 0)
+// console.log(findMax);
 
 // 6. Divide persons in three groups, result should look like
 //     {
@@ -70,40 +64,30 @@ const members = [
 //     }
 //     Less than 35yrs is young, above 35 is old
 
-// let result = {
+// const result = lodash.reduce(members, (acc, curr) => {
+//   if (curr.age && curr.age < 35) {
+//     acc.young.push(curr.name);
+//   } else if (curr.age !== undefined && curr.age > 35) {
+//     acc.old.push(curr.name);
+//   } else {
+//     acc.noage.push(curr.name);
+//   }
+//   return acc
+// },  {
 //   young: [],
 //   old: [],
 //   noage: [],
-// };
-
-// lodash.forEach(members, (member) => {
-//   if (member.age < 35) {
-//     result.young.push(member.name);
-//   } else if (member.age > 35) {
-//     result.old.push(member.name);
-//   } else {
-//     result.noage.push(member.name);
-//   }
 // });
 
 // console.log(result);
 
 // 7. add a new member to same members array instance at index 2
 
-// const index = 2;
-
-// const newObj = {
+// members.splice(2, 0, {
 //   name: "Manoj kumar sharma",
 //   age: 42,
-// };
-
-// function insert(members, index, newObj){
-//     return [...lodash.slice(members, 0, index), newObj, ...lodash.slice(members, index)]
-
-// }
-
-// const newMembers = insert(members, index, newObj)
-// console.log(newMembers);
+// });
+// console.log(members);
 
 // 8. extract first and second element using destructing
 
@@ -116,17 +100,13 @@ const members = [
 //   9. Create a new array instance adding a new member at index 0,
 //      and keeping existing afterwards
 
-// let newMembers = [];
-// newMembers.push({
+// const newMembers = members;
+// members.unshift({
 //   name: "Ramswaroop sharma",
 //   age: 50,
 // });
-
-// lodash.forEach(members, (member)=>{
-//     newMembers.push(member)
-// })
-
 // console.log(newMembers);
+
 
 // 10. Extract properties of object using destructuring
 // lodash.forEach(members, (member) => {
@@ -155,9 +135,8 @@ const members = [
 // 13. Create a new object by copying using spread operator, override
 //     one of the properties to assign a new value in the same step
 
-// const { name: memberName, ...restProp } = members[2];
-// restProp.age = 50;
-// console.log(restProp);
+// const newObj = {...members[2], age : 50}
+// console.log(newObj);
 
 // 14. Use reduce function on array and object
 
